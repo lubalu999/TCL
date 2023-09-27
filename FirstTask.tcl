@@ -16,31 +16,6 @@ proc findValueByKey {key} {
   }
   return 0
 }
-
-#proc isDateUTC {date} {
-#  return [catch {clock scan $date -format "%D%M%Y"}]
-#}
-#
-#proc isTimeUTC {time} {
-#  return [catch {clock scan $time -format "%H%M%S"}]
-#}
-#
-#proc isDouble {number} {
-#  return [string is double $number]
-#}
-#
-#proc isInt {number} {
-#  return [string is integer $number]
-#}
-#
-#proc isPole {pole} {
-#  return pole == "N" || pole == "E"
-#}
-#
-#proc checkAllParams {date time lat1 lat2 lon1 lon2 speed course height sats} {
-#  return isDateUTC $date 
-#}
-
 proc firstParsing {package} {
   set fields [split [string trim $package] ";"]
   if {[llength $fields] == 10} {
