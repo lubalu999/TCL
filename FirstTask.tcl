@@ -16,6 +16,7 @@ proc findValueByKey {key} {
   }
   return 0
 }
+
 proc firstParsing {package} {
   set fields [split [string trim $package] ";"]
   if {[llength $fields] == 10} {
@@ -51,7 +52,6 @@ proc secondParsing {package} {
   puts "$message\n"
 }
 
-
 proc findTypePackage {data} {
   # Проверяем, что строка начинается с "#"
   set delimeter "#"
@@ -60,27 +60,27 @@ proc findTypePackage {data} {
     global packs;  # Глобальная переменная-словарь
     set type "";   # Тип пакета
     
-	  for {set i 1} {$i < [string length $data]} {incr i} {
-	    if {[compareDelimeter $i $data $delimeter] == 0} {
-	      # Если существует такой ключ пакета, то вернуть его номер
-	      set value [findValueByKey $type]
-	      if {$value} {
-	        return $value
-	      } else {
-	        puts "Неизвестный тип пакета $type!\n"
-	        return ""
-	      }
-	    } else {
-	      set type $type[string index $data $i]
-	    }
-	  }
-	} else {
-	  puts "Первый элемент не #!\n"
-	  return ""
+    for {set i 1} {$i < [string length $data]} {incr i} {
+      if {[compareDelimeter $i $data $delimeter] == 0} {
+      # Если существует такой ключ пакета, то вернуть его номер
+        set value [findValueByKey $type]
+        if {$value} {
+	  return $value
+        } else {
+          puts "Неизвестный тип пакета $type!\n"
+          return ""
 	}
-	
-	puts "Тип пакета не заканчивается на #!\n"
-	return ""
+      } else {
+        set type $type[string index $data $i]
+      }
+    }
+  } else {
+    puts "Первый элемент не #!\n"
+    return ""
+  }
+  
+  puts "Тип пакета не заканчивается на #!\n"
+  return ""
 }
 
 set first "#SD#04012011;135515;5544.6025;N;03739.6834;E;35;215;110;7"
